@@ -6,7 +6,8 @@ phases:
    pre_build:
       commands:
       - echo "Entered the pre-build phase"
-      - $(aws ecr get-login  --no-include-email --region $AWS_REGION)
+      - $(aws ecr get-login  --no-include-email --region $AWS_DEFAULT_REGION)
+      - REPOSITORY_URI=876983010549.dkr.ecr.ap-south-1.amazonaws.com/authentication_ms
    build:
       commands:
       - echo "Entered build phase"
