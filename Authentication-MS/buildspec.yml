@@ -8,6 +8,8 @@ phases:
       - echo "Entered the pre-build phase"
       - $(aws ecr get-login  --no-include-email --region $AWS_DEFAULT_REGION)
       - REPOSITORY_URI=876983010549.dkr.ecr.ap-south-1.amazonaws.com/authentication_ms
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | CUT -C 1-7)
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
    build:
       commands:
       - echo "Entered build phase"
